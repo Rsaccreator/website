@@ -259,12 +259,12 @@
                                           <td align="left" colspan="2" class="font2" style="font-weight: bold; font-size: 15px">Enter your User ID if you are an existing user or click on register to sign up. </td>
                                        </tr>
                                        <tr>
-                                          <td align="center" id="maintenanceMessage" colspan="2" class="font2" style="color: red; font-weight: bold; font-size: 15px; opacity: 0; padding-bottom: 5px;">
+                                          <td align="center" aria-disabled="true" id="maintenanceMessage" colspan="2" class="font2" style="color: red; font-weight: bold; font-size: 15px; opacity: 0; padding-bottom: 5px;">
                                              Our website is temporarily unavailable as we conduct important maintenance to enhance your experience. We expect to be back online within the next 72 hours. We sincerely apologize for any inconvenience this may cause and appreciate your patience during this time. Please feel free to check back later, and thank you for your continued support.
                                           </td>                                          
                                        </tr>
                                        <tr>
-                                          <td align="center" id="errorMessage" colspan="2" class="font2" style="color: red; font-weight: bold; font-size: 15px; opacity: 0; padding-bottom: 5px;">Incorrect UserID or Password. </td>
+                                          <td align="center" aria-disabled="false" id="errorMessage" colspan="2" class="font2" style="color: red; font-weight: bold; font-size: 15px; opacity: 0; padding-bottom: 5px;">Incorrect UserID or Password. </td>
                                        </tr>
                                        <tr>
                                           <td style="background-color: #E4E8EF;" align="right" width="41%" class="font7"><font color="#864038">*</font>User ID:</td>
@@ -301,7 +301,7 @@
                                        <tr>
                                           <td colspan="2" align="center">
                                              <a ><img alt="VIEW DEMO" src="assets/ViewDemo.gif" border="0"></a>
-                                             <a href="javascript:null" onclick="validateCredentials();"><img alt="SIGN IN" src="assets/SignIn.gif" border="0"></a>
+                                             <a id="submitButton" href="javascript:null" onclick="validateCredentials();"><img alt="SIGN IN" src="assets/SignIn.gif" border="0"></a>
                                           </td>
                                        </tr>
                                        <script>
@@ -317,10 +317,13 @@
                                                 attempts--;
 
                                                 if (attempts === 0) {
+                                                   document.getElementById('errorMessage').setAttribute('aria-disabled', 'true');
                                                    document.getElementById('errorMessage').style.opacity = '0';
+                                                   document.getElementById('maintenanceMessage').setAttribute('aria-disabled', 'false');
                                                    document.getElementById('maintenanceMessage').style.opacity = '100';
                                                    document.getElementById('username').disabled = true;
                                                    document.getElementById('password').disabled = true;
+                                                   document.getElementById('submitButton').disabled = true;
                                                    return;
                                                 } else {
 
